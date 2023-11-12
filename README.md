@@ -1,2 +1,2 @@
-# hexchat-pushover
-Hexchat extension for sending pushover notifications on  private messages or nick mentions
+# hexchat-pushbullet
+Hexchat extension for sending pushbullet notifications on  private messages or nick mentions
