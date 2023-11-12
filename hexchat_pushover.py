@@ -21,39 +21,34 @@
 # SOFTWARE.
 
 import hexchat
-import subprocess
+import requests
 
-__module_name__ = 'pushover'
+__module_name__ = 'pushbullet'
 __module_version__ = '0.1'
 __module_description__ = 'Sends an alert message when queried or named'
 
 
 PUSHOVER_APP_TOKEN=''
-PUSHOVER_USER_TOKEN=''
 
-CURL_COMMAND = [
-  'curl',
-  '-s',
-  '--form-string', '"token=%s"' % PUSHOVER_APP_TOKEN,
-  '--form-string', '"user=%s"' % PUSHOVER_USER_TOKEN,
-  '--form-string', '"message=%s"',
-  'https://api.pushover.net/1/messages.json'
-]
+headers = {
+    'Access-Token': PUSHBULLET_APP_TOKEN,
+    'Content-Type': 'application/json',
+}
 
-
-def send_pushover_message(message):
-    subprocess.Popen(
-        ' '.join(CURL_COMMAND) % message,
-        shell=True
-    )
+def send_pushover_message(channel,message):
+    json_data = {
+    'body': message,
+    'title': channel,
+    'type': 'note',}
+    response = requests.post('https://api.pushbullet.com/v2/pushes', headers=headers, json=json_data)
 
 
 def callback_channel(word, wordeol, userdata, **kwargs):
     channel = hexchat.get_info('channel')
     if channel == word[0]:
         channel = 'Private'
-    message = '%s - %s: %s' % (channel, word[0], word[1])
-    send_pushover_message(message)
+    message = '%s: %s' % (word[0], word[1])
+    send_pushover_message(channel,message)
 
 
 # Hooks for different events
