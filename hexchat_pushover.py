@@ -28,7 +28,7 @@ __module_version__ = '0.1'
 __module_description__ = 'Sends an alert message when queried or named'
 
 
-PUSHOVER_APP_TOKEN=''
+PUSHBULLET_APP_TOKEN=''
 
 headers = {
     'Access-Token': PUSHBULLET_APP_TOKEN,
@@ -58,4 +58,4 @@ hexchat.hook_print("Private Action to Dialog", callback_channel)
 hexchat.hook_print("Private Message to Dialog", callback_channel)
 
 # Notify plugin is loaded
-hexchat.prnt('Pushover alert plugin loaded')
+hexchat.prnt('Pushbullet alert plugin loaded')
