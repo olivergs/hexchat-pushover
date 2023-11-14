@@ -28,10 +28,10 @@ __module_version__ = '0.1'
 __module_description__ = 'Sends an alert message when queried or named'
 
 
-PUSHBULLET_APP_TOKEN=''
+PUSHBULLET_ACCESS_TOKEN=''
 
 headers = {
-    'Access-Token': PUSHBULLET_APP_TOKEN,
+    'Access-Token': PUSHBULLET_ACCESS_TOKEN,
     'Content-Type': 'application/json',
 }
 
